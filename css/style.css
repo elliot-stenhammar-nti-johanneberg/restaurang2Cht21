@@ -1,0 +1,74 @@
+:root {
+    --main-dark-clr: black;
+    --main-light-clr: white;
+    --main-accent-clr: red;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: none;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+.image-container,
+.container {
+    display: grid;
+    min-height: 100vh;
+    /* background-image: url(https://picsum.photos/1920/1080); */
+    background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(../img/edgar-chaparro-Lwx-q6OdGAc-unsplash.jpg);
+    background-size: cover;
+    grid-template-rows: 10vh 90vh;
+    grid-template-areas:
+    'hd'
+    'mn'
+}
+
+.container {
+    background: none;
+}
+
+header {
+    grid-area: hd;
+    display: flex;
+    justify-content: center;
+    /* background:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)); */
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: mn;
+}        
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    font-size: 150%;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    list-style: none;
+    margin: 0 50px;
+}
+
+nav a:hover {
+    color: black;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
