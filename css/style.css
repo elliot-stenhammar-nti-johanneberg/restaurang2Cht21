@@ -1,7 +1,7 @@
 :root {
-    --main-dark-clr: black;
-    --main-light-clr: white;
-    --main-accent-clr: red;
+    --main-dark-clr: #000000;
+    --main-light-clr: #ebede9;
+    --main-accent-clr: #cf3c28;
 }
 
 * {
@@ -9,32 +9,37 @@
     padding: 0;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
 body {
     background: none;
     font-family: 'Open Sans', sans-serif;
-    color: white;
+    color: var(--main-light-clr);
+    overflow: overlay;
 }
 
-.container {
+#main-container-page-1 {
     display: grid;
     min-height: 100vh;
     background-size: cover;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) ), url(../img/pizza-background.jpg);
     grid-template-rows: 10vh 90vh;
     grid-template-areas:
     'hd'
     'mn'
 }
 
-.page1 {
-    background-image: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8) ), url(../img/monkey2.jpg);
-}
-
-.page2 {
-    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(../img/banana3.jpg);
-}
-
-.page3 {
-    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url());
+#main-container-page-2 {
+    display: grid;
+    min-height: 100vh;
+    background-size: contain;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) ), url(../img/wood-background.jpg);
+    grid-template-rows: 10vh 160vh;
+    grid-template-areas:
+    'hd'
+    'mn'
 }
 
 header {
@@ -47,16 +52,26 @@ header {
 .logo-container {
     /* position: absolute; */
     /* left: 0; */
-    margin-right: auto;
-    margin-left: 25px;
+    /* margin-right: auto; */
+    /* margin-left: 25px; */
 }
 
 main {
+    grid-area: mn;
+}
+
+#main-page-1 {
     display: flex;
     align-items: center;
-    grid-area: mn;
-    position: relative;
-}        
+    justify-content: center;
+}
+
+#main-page-2 {
+    display: grid;
+    padding: 40px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 80px;
+}
 
 nav {
     display: flex;
@@ -72,45 +87,172 @@ nav ul {
 
 nav ul li {
     list-style: none;
-    margin-right: 100px;
+    margin: 0 75px;
 }
 
-nav a:hover {
-    color: red;
+nav a {
+    opacity: 0.8;
+}
+
+nav a:hover{
+    opacity: 1;
 }
 
 a {
-    color: white;
+    color: var(--main-light-clr);
     text-decoration: none;
 }
 
-#title {
-    max-width: 400px;
-    position: absolute;
-    left: 300px;
+#title-container {
+    max-width: 500px;
+    text-align: center;
 }
 
-.qoute {
-    font-size: 250%;
+.title {
+    font-size: 4.5rem;
     position: relative;
+    font-family: 'Poiret One', cursive;
+    margin-bottom: 10px;
 }
 
-.qoute::before{
-    position: absolute;
-    bottom: 0;
-    margin-top: 10px;
-    content: "";
-    width: 85%;
-    height: 3px;
-    background: green;
+.sub-title {
+    opacity: 0.6;
+    font-size: 1.1rem;
 }
 
-.sub-qoute {
-    font-size: 130%;
+.button {
+    padding: 15px 20px;
+    margin: 25px 0px;
+    font-size: 1.1rem;
+    opacity: 0.6;
+    transition-duration: 100ms;
+    cursor: pointer;
+    border-radius: 0.3em;
+    border-style: none;
 }
 
-#test {
+.button:hover,
+.button:focus {
+    opacity: 1;
+}
+
+/* Card */
+
+#main-title {
+    font-size: 2.5rem;
+    margin: 2rem;
+    position: relative;
+    font-family: 'Roboto Mono', monospace;;
+}
+
+.card {
+    /* background-image: url("https://picsum.photos/400/500"); */
+    background-size: cover;
     width: 100%;
-    height: 200px;
-    background: red;
+    height: 500px;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 8px;
+    overflow: hidden;
+    filter: drop-shadow(5px 5px 20px black);
+    transition: transform 200ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+    transform: scale(1.02);
+}
+
+.card:hover .card-title::before,
+.card:focus-within .card-title::before {
+    transform: scaleX(1);
+}
+
+.card-content {
+    background: none;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(transparent 0%, black 110%);
+    transform: translateY(90px);
+    transition: transform 200ms ease-in-out;
+}
+
+.card:hover .card-content,
+.card:focus-within .card-content {
+    transform: translateY(0);
+}
+
+.margin {
+    margin: 0.75rem 0;
+}
+
+.card-title {
+    position: relative;
+    width: max-content;
+}
+
+.card-title::before {
+    content: "";
+    position: absolute;
+    background: var(--main-accent-clr);
+    opacity: 1;
+    width: calc(100% + 1rem);
+    height: 2px;
+    bottom: -5px;
+    left: -1rem;
+    transform: scaleX(0);
+    transition: transform 300ms ease;
+    transform-origin: left;
+}
+
+.card-text {
+    margin-bottom: 1.25rem;
+}
+
+.card-text,
+.card-button {
+    opacity: 0;
+    transition: opacity 200ms ease;
+}
+
+.card:hover .card-text,
+.card:hover .card-button,
+.card:focus-within .card-text,
+.card:focus-within .card-button{
+    opacity: 1;
+    transition: opacity 500ms ease;
+}
+
+.card-button {
+    background: var(--main-accent-clr);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+
+.card-button:hover,
+.card-button:focus{
+    filter: drop-shadow(5px 5px 5px black);
+}
+
+#card-1 {
+    background-image: url(../img/pizza-item-1.jpg)
+}
+
+#card-2 {
+    background-image: url(../img/pizza-item-2.jpg)
+}
+
+#card-3 {
+    background-image: url(../img/pizza-item-3.jpg)
+}
+
+#card-4 {
+    background-image: url(../img/pizza-item-4.jpg)
+}
+
+#card-5 {
+    background-image: url(../img/pizza-item-5.jpg)
+}
+
+#card-6 {
+    background-image: url(../img/pizza-item-6.jpg)
 }
