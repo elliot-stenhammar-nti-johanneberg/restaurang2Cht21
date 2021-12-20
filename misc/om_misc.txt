@@ -1,1 +1,0 @@
-I misc-mappen lägger du saker som inte hör till själva produkten. Tex PSD-filer etc.
